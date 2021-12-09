@@ -1,7 +1,8 @@
 import sys
 import io
+from typing import List
 
-def CountDepthIncreases(depths: 'list[int]') -> int:
+def CountDepthIncreases(depths: List[int]) -> int:
     increases = 0
     previous = 0
     for depth in depths:
@@ -11,7 +12,7 @@ def CountDepthIncreases(depths: 'list[int]') -> int:
         
     return increases
 
-def CountDepthIncreasesWithWindows(depths: 'list[int]') -> int:
+def CountDepthIncreasesWithWindows(depths: List[int]) -> int:
     buckets = [0] * (len(depths) - 2)
     for i in range(0,len(buckets)):
         for j in range (0,3):
@@ -21,7 +22,7 @@ def CountDepthIncreasesWithWindows(depths: 'list[int]') -> int:
     return CountDepthIncreases(buckets)
         
 
-def Main():
+def Main() -> None:
 
     input = open("1_SonarSweep_input.txt")
     data = input.readlines()

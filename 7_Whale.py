@@ -2,13 +2,15 @@ from os import linesep
 import sys
 import io
 from collections import defaultdict
+from typing import List
+from typing import DefaultDict
 
 inputFile = "7_Whale_input.txt"
 
 def NaturalSequenceSum(size : int) -> int:
     return (1 + size)* (size/2)
 
-def GetTotalFuelCost(crabPositions : 'defaultdict', candidatePosition: int, linearBurn : bool = True) -> int:
+def GetTotalFuelCost(crabPositions : DefaultDict, candidatePosition: int, linearBurn : bool = True) -> int:
     cost = 0
     for position, count in crabPositions.items():
         if (linearBurn):
@@ -17,7 +19,7 @@ def GetTotalFuelCost(crabPositions : 'defaultdict', candidatePosition: int, line
             cost += NaturalSequenceSum(abs(position - candidatePosition)) * count
     return cost
 
-def FindCheapestPosition(inPositions : 'list[int]', linearBurn : bool = True) -> int:
+def FindCheapestPosition(inPositions : List[int], linearBurn : bool = True) -> int:
     positionDict = defaultdict(int)
     for pos in inPositions:
         positionDict[pos] += 1
@@ -32,14 +34,14 @@ def FindCheapestPosition(inPositions : 'list[int]', linearBurn : bool = True) ->
 
     return smallestCost
 
-def ParseInput(filename : str) -> 'list[int]':
+def ParseInput(filename : str) -> List[int]:
     
     lines = open(filename).readlines()
     outNums = list(map(int, lines[0].split(',')))
     return outNums    
 
 
-def Main():
+def Main() -> None :
 
     crabPositions = ParseInput(inputFile)
     

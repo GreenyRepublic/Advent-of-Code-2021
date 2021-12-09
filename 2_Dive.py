@@ -1,16 +1,17 @@
 import sys
 import io
+from typing import List, Tuple
 
 inputFile = "2_Dive_input.txt"
 
-def GetPositionAfterDirections(directions: 'list[str]') -> 'tuple[int,int]':
+def GetPositionAfterDirections(directions: List[str]) -> Tuple[int,int]:
     counts = {'forward' : 0, 'up' : 0, 'down' : 0}
     for entry in directions:
         direction, distance = entry.split()
         counts[direction] += int(distance)
     return counts['forward'], (counts['down'] - counts['up'])
 
-def GetPositionAfterDirectionsWithAiming(directions: 'list[str]') -> 'tuple[int,int]':
+def GetPositionAfterDirectionsWithAiming(directions: List[str]) -> Tuple[int,int]:
     aiming = 0
     horizontalDistance = 0
     verticalDistance = 0
@@ -27,7 +28,7 @@ def GetPositionAfterDirectionsWithAiming(directions: 'list[str]') -> 'tuple[int,
 
     return horizontalDistance, verticalDistance
 
-def Main():
+def Main() -> None:
 
     input = open(inputFile)
     data = input.readlines()

@@ -1,9 +1,10 @@
 import sys
 import io
+from typing import List, Tuple
 
 inputFile = "3_Binary_input.txt"
 
-def GetCommonBit(input : 'list[str]', position : int) -> int:
+def GetCommonBit(input : List[str], position : int) -> int:
     commonBit = 0
     for item in input:
         if (item[position]) == '0':
@@ -14,7 +15,7 @@ def GetCommonBit(input : 'list[str]', position : int) -> int:
     return int(commonBit >= 0)
     
 
-def GetGammaAndEpsilonRate(input : 'list[str]') -> 'tuple[int,int]':
+def GetGammaAndEpsilonRate(input : List[str]) -> Tuple[int,int]:
     bitCount = len(input[0].strip())
     gamma = 0
     epsilon = 0
@@ -27,7 +28,7 @@ def GetGammaAndEpsilonRate(input : 'list[str]') -> 'tuple[int,int]':
     
     return gamma, epsilon
 
-def GetLifeSupportRating(input: 'list[str]', oxygen : bool) -> int:
+def GetLifeSupportRating(input: List[str], oxygen : bool) -> int:
     bitCount = len(input[0].strip())
 
     candidates = input.copy()
@@ -46,7 +47,7 @@ def GetLifeSupportRating(input: 'list[str]', oxygen : bool) -> int:
     return int(list(candidates)[0],2)
 
 
-def Main():
+def Main() -> None :
 
     testIn = ["00100",
                 "11110",

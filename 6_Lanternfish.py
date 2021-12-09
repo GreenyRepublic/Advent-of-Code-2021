@@ -1,14 +1,9 @@
-from os import linesep
-import sys
-import io
-from collections import defaultdict
-import numpy as np
-from numpy import linalg
 from numpy.core.defchararray import array, split, splitlines
+from typing import List
 
 inputFile = "6_Lanternfish_input.txt"
 
-def LanternfishPopulationAfterDays(fishPopulation : 'list[int]', days : int) -> int:
+def LanternfishPopulationAfterDays(fishPopulation : List[int], days : int) -> int:
     fishDaysToBreed = [0] * 9
     
     # Populate days to breed list
@@ -25,14 +20,14 @@ def LanternfishPopulationAfterDays(fishPopulation : 'list[int]', days : int) -> 
 
     return sum(fishDaysToBreed)
 
-def ParseInput(filename : str) -> 'list[int]':
+def ParseInput(filename : str) -> List[int]:
     
     lines = open(filename).readlines()
     outNums = list(map(int, lines[0].split(',')))
     return outNums    
 
 
-def Main():
+def Main() -> None :
 
     lanternfish = ParseInput(inputFile)
     

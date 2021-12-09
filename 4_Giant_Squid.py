@@ -1,20 +1,17 @@
-import sys
-import io
-import numpy
-from numpy.core import numeric
-from numpy.core.numeric import False_
+from typing import List
+from typing import Tuple
 
 inputFile = "4_Giant_Squid_input.txt"
 testInputFile = "4_test_input.txt"
 
 class BingoBoard:
-    def __init__(self, grid : 'list[str]') -> None:
+    def __init__(self, grid : List[str]) -> None:
         self._GridWidth = 5
         self._GridSquares = dict()
         self._MarkedSquares = [[False] * self._GridWidth for i in range(self._GridWidth)]
         self._PopulateGrid(grid)
 
-    def _PopulateGrid(self, grid : 'list[str]'):
+    def _PopulateGrid(self, grid : List[str]):
         for x in range(0, self._GridWidth):
             line = grid[x].split()
             for y in range(0,self._GridWidth):
@@ -54,7 +51,7 @@ class BingoBoard:
 
         return sum
 
-def UpdateGrids(grids : 'list[BingoBoard]', num : int) -> 'list[BingoBoard]':
+def UpdateGrids(grids : List[BingoBoard], num : int) -> List[BingoBoard]:
     winners = []
     for grid in grids:
         winnerFound = grid.MarkNumber(num)
@@ -63,7 +60,7 @@ def UpdateGrids(grids : 'list[BingoBoard]', num : int) -> 'list[BingoBoard]':
 
     return winners
 
-def SquidGame(numberSequence : 'list[int]', grids : 'list[BingoBoard]', getLast : bool = False) -> 'list[tuple[int, BingoBoard]]':
+def SquidGame(numberSequence : List[int], grids : List[BingoBoard], getLast : bool = False) -> List[Tuple[int, BingoBoard]]:
 
     winners = []    
     for number in numberSequence:
@@ -74,7 +71,7 @@ def SquidGame(numberSequence : 'list[int]', grids : 'list[BingoBoard]', getLast 
 
     return winners
 
-def ParseInput(filename : str) -> 'tuple[int, list[BingoBoard]]':
+def ParseInput(filename : str) -> Tuple[int, List[BingoBoard]]:
 
     lines = open(filename).readlines()
     
@@ -92,7 +89,7 @@ def ParseInput(filename : str) -> 'tuple[int, list[BingoBoard]]':
     gridList.append(BingoBoard(currentGrid)) # Catch the last line/EOF
     return numberList, gridList
 
-def Main():
+def Main() -> None :
 
     numberSequence, grids = ParseInput(inputFile)
 
