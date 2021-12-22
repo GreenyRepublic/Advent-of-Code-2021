@@ -78,9 +78,10 @@ class Signal:
                 charSet.add(char)
 
             possibleDigits = DIGIT_SEGMENT_COUNTS[len(code)]
-            for digit in possibleDigits:
-                for segment in DIGIT_SEGMENT_MAPPINGS[digit]:
-                    self._segments[segment].intersection_update(charSet)
+            if len(possibleDigits) == 1:
+                for digit in possibleDigits:
+                    for segment in DIGIT_SEGMENT_MAPPINGS[digit]:
+                        self._segments[segment].intersection_update(charSet)
         
         
         print(self._segments)

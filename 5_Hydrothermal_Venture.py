@@ -1,56 +1,10 @@
 from os import linesep
 from collections import defaultdict
 from typing import List, Tuple
-import math
+from Vector import Vector2
 
 inputFile = "5_Hydrothermal_Venture_input.txt"
 testInputFile = "5_Hydrothermal_Venture_test_input.txt"
-
-class Vector2:
-    def __init__(self, xCoord : float, yCoord : float) -> None:
-        self.x = xCoord
-        self.y = yCoord
-        self.length = math.sqrt(self.x ** 2 + self.y ** 2)
-
-    def __sub__(self, other):
-        return Vector2(self.x - other.x, self.y - other.y)
-    
-    def __add__(self, other):
-        return Vector2(self.x + other.x, self.y + other.y)
-    
-    def __lt__(self, other)-> bool:
-        return (self.MagnitudeSquared()) < (other.MagnitudeSquared())
-
-    def __gt__(self, other)-> bool:
-        return (self.MagnitudeSquared()) > (other.MagnitudeSquared())
-    
-    def __eq__(self, other) -> bool:
-        return not self < other and not self > other
-
-    def RoundUp(self) -> None:
-        self.x = math.ceil(self.x)
-        self.y = math.ceil(self.y)
-
-    def MagnitudeSquared(self) -> int:
-        return self.length ** 2
-
-    def Magnitude(self) -> float:
-        return self.length
-
-    def Normalised(self):
-        if (abs(self.x) == abs(self.y)):
-            return Vector2(self.x/abs(self.x), self.y/abs(self.y))
-        return Vector2(math.ceil(self.x / self.Magnitude()), math.ceil(self.y / self.Magnitude()))
-        
-
-    def Dot(self, other):
-        return (self.x * other.x) + (self.y * other.y)
-
-    def ToTuple(self) -> Tuple[int,int]:
-        return (int(self.x), int(self.y))
-
-    
-
 
 class LineSegment:
     def __init__(self, start : Vector2, end : Vector2) -> None:
